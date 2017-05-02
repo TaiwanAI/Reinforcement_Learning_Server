@@ -109,43 +109,20 @@ class QLearningAgent(ReinforcementAgent):
       return random.choice(list(bestActionSet))
 
   def getAction(self, state):
-    """
-      Compute the action to take in the current state.  With
-      probability self.epsilon, we should take a random action and
-      take the best policy action otherwise.  Note that if there are
-      no legal actions, which is the case at the terminal state, you
-      should choose None as the action.
-
-      HINT: You might want to use util.flipCoin(prob)
-      HINT: To pick randomly from a list, use random.choice(list)
-    """
-    # Pick Action
     legalActions = self.actions
     if len(legalActions) == 0:
       return None
     action = None
-        # util.raiseNotDefined()
     if util.flipCoin(self.epsilon):
-      # print legalActions
       action = random.choice(legalActions)
     else:
       action = self.getPolicy(state)
     return action
 
   def update(self, state, action, nextState, reward):
-    """
-      The parent class calls this to observe a
-      state = action => nextState and reward transition.
-      You should do your Q-Value update here
-
-      NOTE: You should never call this function,
-      it will be called on your behalf
-    """
     
-    # util.raiseNotDefined()
-
     nextAction = self.getAction(nextState)
     sample = reward + self.discount * self.getQValue(nextState, nextAction)
     self.qValue[(state,action)] = self.getQValue(state,action) * (1-self.alpha) + self.alpha* sample
-    # self.qValue[(state, action)] = self.getQValue(state, action) + self.alpha * (reward + self.discount * self.getValue(nextState) - self.getQValue(state, action))
+    
 

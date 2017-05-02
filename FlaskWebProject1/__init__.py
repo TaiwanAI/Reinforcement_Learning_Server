@@ -16,14 +16,10 @@ app = Flask(__name__)
 @app.route('/observeTransition', methods=['POST'])
 def observeTransition():
 	oldState = request.json['oldState']
-	
 	lastAction = request.json['lastAction']
-	
 	currentState = request.json['currentState']
-	
 	reward = request.json['reward']
 	
-
 	oldState = tuple(oldState)
 	currentState = tuple(currentState)
 	lastAction = tuple(lastAction)
